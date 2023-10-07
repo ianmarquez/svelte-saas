@@ -1,4 +1,5 @@
 <script>
+	import { ArrowRight } from 'lucide-svelte';
 	import { MaxWidthWrapper } from '.';
 	import { buttonVariants } from './ui/button';
 </script>
@@ -17,6 +18,10 @@
 						size: 'sm'
 					})}>Pricing</a
 				>
+				<a href="/login" class={buttonVariants({ variant: 'ghost', size: 'sm' })}>Sign In</a>
+				<a href="/register" class={buttonVariants({ size: 'sm' })}>
+					Get Started <ArrowRight class="ml-1.5 h-5 w-5" />
+				</a>
 			</div>
 		</div>
 	</MaxWidthWrapper>
