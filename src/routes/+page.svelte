@@ -24,7 +24,7 @@
 		askng questions right away.
 	</p>
 	<a
-		href="/register"
+		href="/auth/register"
 		target="_blank"
 		class={buttonVariants({
 			size: 'lg',

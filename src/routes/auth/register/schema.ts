@@ -2,6 +2,11 @@ import { z } from 'zod';
 
 export const registerFormSchema = z
 	.object({
+		username: z
+			.string({ required_error: 'Username is required' })
+			.min(2, { message: 'Username must be at least 2 characters' })
+			.max(64, { message: 'Username must be less than 64 characters' })
+			.regex(/^[a-zA-Z\d]*$/, { message: 'Username can only contain letters and numbers' }),
 		name: z
 			.string({ required_error: 'Name is required' })
 			.regex(/^[a-zA-Z ]*$/, { message: 'Name can only contain letters and spaces' })

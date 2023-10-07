@@ -1,6 +1,6 @@
 import { fail, type Actions } from '@sveltejs/kit';
 import { superValidate } from 'sveltekit-superforms/server';
-import type { PageServerLoad } from './$types';
+import type { PageServerLoad } from '../../register/$types';
 import { registerFormSchema } from './schema';
 
 export const load: PageServerLoad = async () => {
