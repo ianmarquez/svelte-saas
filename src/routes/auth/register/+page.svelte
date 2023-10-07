@@ -4,6 +4,12 @@
 	import type { SuperValidated } from 'sveltekit-superforms';
 
 	export let form: SuperValidated<RegisterFormSchema>;
+	let loading = false;
+	let showSuccess = false;
+	let errorMessage = '';
+	$: showSuccess;
+	$: loading;
+	$: errorMessage;
 </script>
 
 <Form.Root
@@ -11,7 +17,23 @@
 	{form}
 	schema={registerFormSchema}
 	let:config
-	class="md:h-fit w-full h-full bg-white px-8 py-5 md:px-16 md:py-10 md:rounded-lg md:shadow-lg flex flex-col gap-4 max-w-4xl"
+	options={{
+		onSubmit: () => {
+			loading = true;
+			showSuccess = false;
+			errorMessage = '';
+		},
+		onResult: ({ result }) => {
+			if (result.data.error) {
+				errorMessage =
+					result.data.error || 'An error has occurred creating the user, please try again later.';
+			} else if (result.data.success) {
+				showSuccess = true;
+			}
+			loading = false;
+		}
+	}}
+	class="md:h-fit w-full h-full bg-white px-8 py-5 md:p-16 md:rounded-lg md:shadow-xl flex flex-col gap-4 max-w-4xl"
 >
 	<h2 class="text-2xl md:text-4xl font-bold text-center">Register</h2>
 	<Form.Field {config} name="username">
@@ -21,7 +43,6 @@
 			<Form.Validation />
 		</Form.Item>
 	</Form.Field>
-
 	<Form.Field {config} name="name">
 		<Form.Item>
 			<Form.Label>Name</Form.Label>
@@ -50,8 +71,20 @@
 			<Form.Validation />
 		</Form.Item>
 	</Form.Field>
-
-	<Form.Button>Register</Form.Button>
+	<Form.Button disabled={loading}>Register</Form.Button>
+	{#if showSuccess}
+		<span
+			class="text-green-600 text-center px-8 py-4 rounded-lg border-green-600 bg-green-200 border-solid border-[1px]"
+			>Successfully registered! Please wait for your verification email.</span
+		>
+	{/if}
+	{#if errorMessage}
+		<span
+			class="text-red-600 text-center px-8 py-4 rounded-lg border-red-600 bg-red-200 border-solid border-[1px]"
+		>
+			{errorMessage}
+		</span>
+	{/if}
 	<span class="text-zinc-700 text-center">
 		Already a member?
 		<a

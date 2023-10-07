@@ -1,7 +1,8 @@
-import { fail, type Actions } from '@sveltejs/kit';
+import { fail, type Actions, error, redirect } from '@sveltejs/kit';
+import type { PageServerLoad } from './$types';
 import { superValidate } from 'sveltekit-superforms/server';
-import type { PageServerLoad } from '../../login/$types';
 import { loginFormSchema } from './schema';
+import { ClientResponseError } from 'pocketbase';
 
 export const load: PageServerLoad = async () => {
 	return {
@@ -15,7 +16,6 @@ export const actions: Actions = {
 		if (!form.valid) {
 			return fail(400, { form });
 		}
-
 		return {
 			form
 		};
