@@ -1,8 +1,8 @@
+import type { ClientResponseError } from 'pocketbase';
+import type { NumericRange } from 'sveltekit-superforms/dist/utils';
 import { message, superValidate } from 'sveltekit-superforms/server';
 import type { Actions, PageServerLoad } from './$types';
 import { resetPasswordSchema } from './schema';
-import type { ClientResponseError } from 'pocketbase';
-import type { NumericRange } from 'sveltekit-superforms/dist/utils';
 
 export const load: PageServerLoad = async () => {
 	return {

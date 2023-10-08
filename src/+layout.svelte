@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { Navbar } from '$lib/components';
 	import '../app.postcss';
+	export let data;
 </script>
 
 <svelte:head>
@@ -9,7 +10,7 @@
 </svelte:head>
 
 <div class="light min-h-screen font-sans antialiased">
-	<Navbar />
+	<Navbar user={data.user} />
 	<main>
 		<slot />
 	</main>

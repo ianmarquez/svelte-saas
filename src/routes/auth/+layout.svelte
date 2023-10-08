@@ -1,5 +1,7 @@
 <div class="flex flex-col md:flex-row w-full bg-transparent h-[calc(100vh-3.5rem)]">
-	<div class="relative md:h-full h-1/3 md:w-1/2 flex flex-col justify-center text-center">
+	<div
+		class="relative md:h-full h-1/3 md:w-1/2 flex flex-col justify-center items-center text-center"
+	>
 		<div
 			class="bg-cover absolute top-0 left-0 bottom-0 right-0 -z-[1] opacity-80"
 			style="background-image:

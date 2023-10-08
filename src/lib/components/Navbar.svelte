@@ -1,9 +1,9 @@
 <script lang="ts">
+	import type { UsersRecord } from '$lib/types/pocketbase-types';
 	import { ArrowRight, LogOut } from 'lucide-svelte';
 	import { MaxWidthWrapper } from '.';
 	import { buttonVariants } from './ui/button';
-	import type pocketbase from 'pocketbase';
-	export let user: pocketbase['authStore']['model'];
+	export let user: UsersRecord;
 </script>
 
 <nav
