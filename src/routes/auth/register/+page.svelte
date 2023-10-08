@@ -20,14 +20,13 @@
 	options={{
 		onSubmit: () => {
 			loading = true;
-			showSuccess = false;
 			errorMessage = '';
+			showSuccess = false;
 		},
 		onResult: ({ result }) => {
-			if (result.data.error) {
-				errorMessage =
-					result.data.error || 'An error has occurred creating the user, please try again later.';
-			} else if (result.data.success) {
+			if (result.type === 'failure') {
+				errorMessage = result.data.form.message;
+			} else if (result.type === 'success') {
 				showSuccess = true;
 			}
 			loading = false;
