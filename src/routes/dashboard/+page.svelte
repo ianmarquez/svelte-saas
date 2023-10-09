@@ -1,11 +1,11 @@
 <script lang="ts">
+	import * as AlertDialog from '$lib/components/ui/alert-dialog';
 	import { UploadButton } from '$lib/components';
 	import { Ghost, MessageSquare, Plus, TrashIcon } from 'lucide-svelte';
 	import { format } from 'date-fns';
 	import { buttonVariants } from '$lib/components/ui/button/index.js';
 
 	export let data;
-	console.log(data);
 </script>
 
 <main class="mx-auto max-w-7xl md:p-10">
@@ -48,15 +48,33 @@
 							<MessageSquare class="h-4 w-4" />
 							Message
 						</div>
-						<button
-							class={'w-full ' +
-								buttonVariants({
-									variant: 'destructive',
-									size: 'sm'
-								})}
-						>
-							<TrashIcon class="h-4 w-4" />
-						</button>
+
+						<AlertDialog.Root>
+							<AlertDialog.Trigger
+								class={'w-full ' +
+									buttonVariants({
+										variant: 'destructive',
+										size: 'sm'
+									})}
+							>
+								<TrashIcon class="h-4 w-4" />
+							</AlertDialog.Trigger>
+							<AlertDialog.Content>
+								<AlertDialog.Header>
+									<AlertDialog.Title>
+										Are you sure you want to delete "{file.name}"?
+									</AlertDialog.Title>
+									<AlertDialog.Description>
+										This action cannot be undone. This will permanently delete the file and remove
+										it from our servers.
+									</AlertDialog.Description>
+								</AlertDialog.Header>
+								<AlertDialog.Footer>
+									<AlertDialog.Cancel>Cancel</AlertDialog.Cancel>
+									<AlertDialog.Action>Continue</AlertDialog.Action>
+								</AlertDialog.Footer>
+							</AlertDialog.Content>
+						</AlertDialog.Root>
 					</div>
 				</li>
 			{/each}
