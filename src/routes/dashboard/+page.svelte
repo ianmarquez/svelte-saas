@@ -17,11 +17,7 @@
 			class="mt-8 grid grid-cols-1 gap-6 divide-y divide-zinc-200 md:grid-cols-2 md-grid-cols-2 lg:grid-cols-3"
 		>
 			{#each data.files as file}
-				<li
-					class="col-span-1 divide-y divide-gray-200 rounded-lg bg-white shadow transition hover:shadow-lg"
-				>
-					<FileCard {file} />
-				</li>
+				<FileCard {file} />
 			{/each}
 		</ul>
 	{:else}
