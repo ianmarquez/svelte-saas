@@ -4,7 +4,6 @@ import type { Handle } from '@sveltejs/kit';
 
 export const handle: Handle = async ({ event, resolve }) => {
 	pb.authStore.loadFromCookie(event.request.headers.get('cookie') || '');
-
 	event.locals.pb = pb;
 	if (event.locals.pb.authStore.isValid) {
 		try {
