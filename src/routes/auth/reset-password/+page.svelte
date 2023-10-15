@@ -25,7 +25,6 @@
 			errorMessage = '';
 		},
 		onResult: ({ result }) => {
-			console.log(result.data);
 			if (result.type === 'failure') {
 				errorMessage = result.data.form.message;
 			} else if (result.type === 'success') {
