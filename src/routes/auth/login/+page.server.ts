@@ -5,7 +5,10 @@ import { message, superValidate } from 'sveltekit-superforms/server';
 import type { PageServerLoad } from './$types';
 import { loginFormSchema } from './schema';
 
-export const load: PageServerLoad = async () => {
+export const load: PageServerLoad = async ({ locals }) => {
+	if (locals.pb.authStore.isValid) {
+		throw redirect(303, '/dashboard');
+	}
 	return {
 		form: superValidate(loginFormSchema)
 	};
