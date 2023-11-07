@@ -5,7 +5,7 @@ import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async ({ locals }) => {
 	if (locals.pb.authStore.isValid === false || !locals.user) {
-		throw redirect(303, '/auth/login?redirect=/dashboard');
+		throw redirect(303, '/auth/login');
 	}
 
 	const getUserFiles = async (userId: string) => {
