@@ -15,7 +15,7 @@
 	async function deleteProject(id: string) {
 		try {
 			loading = true;
-			await fetch(`/api/files/${id}`, {
+			await fetch(`/api/file/${id}`, {
 				method: 'GET'
 			});
 			toast.success(`File "${file.name}" was successfully deleted`);
